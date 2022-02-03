@@ -4,9 +4,25 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  void answerQuestion() {
-    print('clicked onPress function');
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  int currentIndex = 0;
+
+  List<String> questions = ['What\'s your name?', 'How old are you?', 'Where are you from?'];
+
+  
+
+  void questionChangeHandler() {
+    setState(() {
+      currentIndex += 1;
+    });
+    print('current index of question => $currentIndex');
   }
 
   @override
@@ -14,21 +30,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter 1o1'),
+          title: const Text('Flutter 101'),
         ),
         body: Column(children: <Widget>[
-          const Text('Questions'),
+          Text(questions[currentIndex]),
           RaisedButton(
-            onPressed: answerQuestion,
+            onPressed: questionChangeHandler,
             child: const Text('question 1'),
           ),
           RaisedButton(
-            onPressed: answerQuestion,
+            onPressed: () => print('print question'),
             child: const Text('question 2'),
           ),
           RaisedButton(
-            onPressed: answerQuestion,
-            child: const Text('question 2'),
+            onPressed: () => print('print question'),
+            child: const Text('question 3'),
           ),
         ]),
       ),
