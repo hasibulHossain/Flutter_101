@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -7,12 +9,12 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  int currentIndex = 0;
+class _MyAppState extends State<MyApp> {
+  int _currentIndex = 0;
 
   List<String> questions = ['What\'s your name?', 'How old are you?', 'Where are you from?'];
 
@@ -20,9 +22,9 @@ class MyAppState extends State<MyApp> {
 
   void questionChangeHandler() {
     setState(() {
-      currentIndex += 1;
+      _currentIndex += 1;
     });
-    print('current index of question => $currentIndex');
+    print('current index of question => $_currentIndex');
   }
 
   @override
@@ -33,7 +35,7 @@ class MyAppState extends State<MyApp> {
           title: const Text('Flutter 101'),
         ),
         body: Column(children: <Widget>[
-          Text(questions[currentIndex]),
+          Question(questions[_currentIndex]),
           RaisedButton(
             onPressed: questionChangeHandler,
             child: const Text('question 1'),
